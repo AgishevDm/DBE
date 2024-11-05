@@ -1,0 +1,90 @@
+﻿<Window x:Class="DBE.Window1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DBE"
+        mc:Ignorable="d"
+        Title="DataBaseEditor" Height="996" Width="1934"
+        Background="#FF3E3E3E" WindowState="Maximized">
+    <!-- Добавлен цвет фона для окна -->
+    <Grid Margin="0,2,0,-2">
+
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FF969696"/>
+                <GradientStop Color="#FF2A2B2E"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <!-- 0.5 = k - 1 -->
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="85*"/>
+            <!-- 0.5 = k - 1 -->
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Grid.Column="0" Margin="0,0,645,327" Grid.RowSpan="2" Opacity="1" UseLayoutRounding="False">
+            <Grid.Background>
+                <ImageBrush ImageSource="/snimok-ekrana-2021-06-17-v-15.07.25.png" Opacity="0.1">
+                    <ImageBrush.RelativeTransform>
+                        <TransformGroup>
+                            <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                            <SkewTransform CenterX="0.5" CenterY="0.5"/>
+                            <RotateTransform Angle="180" CenterX="0.5" CenterY="0.5"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </ImageBrush.RelativeTransform>
+                </ImageBrush>
+            </Grid.Background>
+            <Grid.RenderTransform>
+                <!-- ScaleX/Y = k -->
+                <ScaleTransform CenterX="0" CenterY="0" ScaleX="1.5" ScaleY="1.5"/>
+            </Grid.RenderTransform>
+            <DataGrid x:Name="DataTable" HorizontalGridLinesBrush="#FFCACACA"
+          VerticalGridLinesBrush="#FFCACACA" HorizontalAlignment="Left" Height="594" Margin="254,41,0,0" VerticalAlignment="Top" Width="627" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="DataTable_SelectionChanged" Background="#FFE5E5E5" Foreground="#FF1B1B1B"/>
+            <ListBox x:Name="tablelistBox" HorizontalAlignment="Left" Height="595" Margin="18,40,0,0" VerticalAlignment="Top" Width="216" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="tablelistBox_SelectionChanged" Background="#E5E5E5"/>
+            <Button x:Name="CreatTableButton" Content="Создать таблицу" HorizontalAlignment="Left" Height="31" Margin="906,102,0,0" VerticalAlignment="Top" Width="364" Click="CreatTableButton_Click" Background="#FF4AA853" Foreground="White" FontWeight="SemiBold"/>
+            <Button x:Name="DeleteTableButton" Content="Удалить таблицу" HorizontalAlignment="Left" Height="32" Margin="906,159,0,0" VerticalAlignment="Top" Width="364" Click="DeleteTableButton_Click" Background="#FFF2385A" Foreground="White" FontWeight="SemiBold"/>
+            <Button x:Name="AddColumButton" Content="Добавить столбец" HorizontalAlignment="Left" Height="32" Margin="911,349,0,0" VerticalAlignment="Top" Width="359" Click="AddColumButton_Click" Background="#FF1E9BF7" Foreground="White" FontWeight="SemiBold"/>
+            <Button x:Name="DeleteColumButton" Content="Удалить столбец" HorizontalAlignment="Left" Height="32" Margin="911,454,0,0" VerticalAlignment="Top" Width="359" Click="DeleteColumButton_Click" Background="#FF9800" Foreground="White" FontWeight="SemiBold"/>
+            <TextBox x:Name="tablenameTextBox" HorizontalAlignment="Left" Height="22" Margin="1059,61,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="191" Background="#FF57595F" BorderBrush="#B0B0B0" BorderThickness="1" Foreground="#FFF4F4F4" SelectionBrush="#FF563488"/>
+            <Label Content="Название таблицы" HorizontalAlignment="Left" Margin="906,59,0,0" VerticalAlignment="Top" Foreground="#FFF4F4F4"/>
+            <ComboBox x:Name="datatypeComboBox" HorizontalAlignment="Left" Margin="1074,302,0,0" VerticalAlignment="Top" Width="138" SelectionChanged="datatypeComboBox_SelectionChanged" Background="#FF57595F" BorderBrush="#FF3E4044" BorderThickness="1" Foreground="#FF6F6F6F"/>
+            <Button x:Name="SaveButton" Content="Сохранить" HorizontalAlignment="Left" Height="58" Margin="899,562,0,0" VerticalAlignment="Top" Width="371" Click="SaveButton_Click" Background="#8BC34A" Foreground="White" FontSize="16" FontWeight="Bold"/>
+            <Label Content="Введите название столбца" HorizontalAlignment="Left" Margin="904,264,0,0" VerticalAlignment="Top" Foreground="#FFF4F4F4"/>
+            <ComboBox x:Name="columnComboBox" HorizontalAlignment="Left" Margin="1076,407,0,0" VerticalAlignment="Top" Width="136" SelectionChanged="columnComboBox_SelectionChanged" Background="#FF798BBF" BorderBrush="#FF3E4044" BorderThickness="1" Foreground="#FF6F6F6F"/>
+            <Label Content="Список таблиц:" HorizontalAlignment="Left" Margin="18,14,0,0" VerticalAlignment="Top" Foreground="White"/>
+            <Label Content="Тип данных" HorizontalAlignment="Left" Margin="982,300,0,0" VerticalAlignment="Top" Foreground="White"/>
+            <Label Content="Название столбца" HorizontalAlignment="Left" Margin="911,403,0,0" VerticalAlignment="Top" Foreground="White"/>
+            <TextBox x:Name="columnameTextBox" HorizontalAlignment="Left" Height="22" Margin="1074,266,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="176" TextChanged="columnameTextBox_TextChanged" Background="#FF57595F" BorderBrush="#B0B0B0" BorderThickness="1" SelectionBrush="#FF563488" Foreground="#FFF4F4F4" IsUndoEnabled="False"/>
+            <Label Content="------------------------------------------------------" HorizontalAlignment="Left" Margin="954,217,0,0" VerticalAlignment="Top" FontWeight="UltraBlack" Height="20" RenderTransformOrigin="0.497,0.223" Width="272">
+                <Label.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform AngleX="0"/>
+                        <RotateTransform/>
+                        <TranslateTransform X="0"/>
+                    </TransformGroup>
+                </Label.RenderTransform>
+                <Label.Foreground>
+                    <SolidColorBrush Color="White" Opacity="0.3"/>
+                </Label.Foreground>
+            </Label>
+            <Label Content="------------------------------------------------------" HorizontalAlignment="Left" Margin="954,514,0,0" VerticalAlignment="Top" FontWeight="UltraBlack" Height="20" RenderTransformOrigin="0.497,0.223" Width="272">
+                <Label.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform AngleX="0"/>
+                        <RotateTransform/>
+                        <TranslateTransform X="0"/>
+                    </TransformGroup>
+                </Label.RenderTransform>
+                <Label.Foreground>
+                    <SolidColorBrush Color="White" Opacity="0.3"/>
+                </Label.Foreground>
+            </Label>
+        </Grid>
+    </Grid>
+</Window>
