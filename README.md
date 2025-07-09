@@ -1,4 +1,4 @@
-# Приложение для работы с БД MS SQL
+# Приложение для работы с БД MS SQL: DBE (DataBaseEditor)
 Перед началом работы с приложением “DBE” необходимо включить MS SQL Server и запустить нужный сервер.
 
 ![image](https://github.com/user-attachments/assets/c8e680d5-c326-4a81-a753-fe28a0f394e0)
